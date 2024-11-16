@@ -41,4 +41,4 @@ http://localhost:8080/static/index.html
 This is a simple Go server that serves static files and handles form submissions. It can be used as a starting point for building more complex web applications in Go.
 
 ## image of the server
-![]
+![GO-Server](https://github.com/user-attachments/assets/b5e89a19-25a4-417d-975a-9bbe9a175b87)
