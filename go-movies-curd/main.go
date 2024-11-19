@@ -4,7 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"math/rand"
 	"net/http"
+	"strconv"
 
 	"github.com/gorilla/mux"
 )
@@ -52,8 +54,38 @@ func getMovie(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 }
-func createMovie(w http.ResponseWriter, r *http.Request) {}
-func updateMovie(w http.ResponseWriter, r *http.Request) {}
+func createMovie(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	var movie Movie
+	_ = json.NewDecoder(r.Body).Decode(&movie)
+	movie.ID = strconv.Itoa(rand.Intn(100000000))
+	movies = append(movies, movie)
+	json.NewEncoder(w).Encode(movie)
+}
+
+func updateMovie(w http.ResponseWriter, r *http.Request) {
+	//set content type
+	//params
+	//loop over the movies and range
+	//delete the movie with the id that you have sent
+	//add a new movie - that you sent the body with postman
+
+	w.Header().Set("Content-Type", "application/json")
+	params := mux.Vars(r)
+
+	for index, item := range movies {
+		if item.ID == params["id"] {
+			movies = append(movies[:index], movies[index+1:]...)
+			//add a new Movie
+			var movie Movie
+			_ = json.NewDecoder(r.Body).Decode(&movies)
+			movie.ID = params["id"]
+			movies = append(movies, movie)
+			json.NewEncoder(w).Encode(movie)
+			return
+		}
+	}
+}
 
 func main() {
 	r := mux.NewRouter()
