@@ -23,3 +23,7 @@ A simple RESTful API to manage a collection of movies. Built with Go and Gorilla
    ```bash
    git clone https://github.com/your-username/movie-api.git
    cd movie-api
+   
+## Architecture Overview
+   
+![movie-curd](https://github.com/user-attachments/assets/cc76c23e-ab27-488c-93a8-6234813d6593)
